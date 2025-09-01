@@ -122,10 +122,24 @@ function addMessage(content, type, sources = null, isWelcome = false) {
     let html = `<div class="message-content">${displayContent}</div>`;
     
     if (sources && sources.length > 0) {
+        // Process sources to handle both strings and structured objects with links
+        const sourceElements = sources.map(source => {
+            if (typeof source === 'object' && source.title && source.link) {
+                // Create clickable link for structured sources
+                return `<a href="${escapeHtml(source.link)}" target="_blank" rel="noopener noreferrer" class="source-link" title="Open ${source.type === 'lesson' ? 'lesson' : 'course'} in new tab">${escapeHtml(source.title)}</a>`;
+            } else if (typeof source === 'string') {
+                // Handle legacy string sources
+                return escapeHtml(source);
+            } else {
+                // Fallback for unexpected formats
+                return escapeHtml(String(source));
+            }
+        });
+        
         html += `
             <details class="sources-collapsible">
                 <summary class="sources-header">Sources</summary>
-                <div class="sources-content">${sources.join(', ')}</div>
+                <div class="sources-content">${sourceElements.join(', ')}</div>
             </details>
         `;
     }

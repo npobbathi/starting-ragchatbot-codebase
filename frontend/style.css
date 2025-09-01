@@ -245,6 +245,46 @@ header h1 {
     color: var(--text-secondary);
 }
 
+/* Source Link Styling */
+.source-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.125rem 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.source-link:hover {
+    color: var(--primary-hover);
+    background-color: rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
+}
+
+.source-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.source-link:active {
+    transform: translateY(0);
+}
+
+/* Add a subtle external link icon */
+.source-link::after {
+    content: '↗';
+    font-size: 0.75em;
+    margin-left: 0.25rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.source-link:hover::after {
+    opacity: 1;
+}
+
 /* Markdown formatting styles */
 .message-content h1,
 .message-content h2,
