@@ -207,6 +207,7 @@ class DocumentProcessor:
                     link_match = re.match(r'^Lesson Link:\s*(.+)$', next_line, re.IGNORECASE)
                     if link_match:
                         lesson_link = link_match.group(1).strip()
+                        print(f"DEBUG: Found lesson link for {course_title} Lesson {current_lesson}: {lesson_link}")
                         i += 1  # Skip the link line so it's not added to content
                 
                 lesson_content = []
